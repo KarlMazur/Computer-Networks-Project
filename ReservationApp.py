@@ -45,7 +45,12 @@ class MainWindow(QMainWindow):
         self.reservationEmail.move(120, 220)
         self.reservationEmail.resize(160,20)
     def clickMethod(self):
-        print('Clicked Pyqt button.')
+        print('Your name: ' + self.reservationName.text())
+        print('Your check In Date: ' + self.checkInDateEdit.text())
+        print('Your check Out Date: ' + self.checkOutDateEdit.text())
+        print('Your adults In Room: ' + self.adultsInRoom.text())
+        print('Your Children In Room: ' + self.childrenInRoom.text())
+        print('Your reservationEmail: ' + self.reservationEmail.text())
 
 
 if __name__ == "__main__":
