@@ -2,7 +2,9 @@ import sys
 from PyQt5 import QtCore, QtWidgets,QtGui
 from PyQt5.QtWidgets import*
 from PyQt5.QtCore import*
+from firebase import firebase
 
+firebase = firebase.FirebaseApplication('https://reservationapp-2019.firebaseio.com/')
 class MainWindow(QMainWindow):
     def __init__(self):
         QMainWindow.__init__(self)
@@ -51,6 +53,10 @@ class MainWindow(QMainWindow):
         print('Your adults In Room: ' + self.adultsInRoom.text())
         print('Your Children In Room: ' + self.childrenInRoom.text())
         print('Your reservationEmail: ' + self.reservationEmail.text())
+
+        result = firebase.post('/Reservation/', {"reservation":self.reservationEmail.text()+","+self.reservationName.text()+","+self.checkInDateEdit.text()+","+self.checkOutDateEdit.text()+"," +self.adultsInRoom.text()+","+self.childrenInRoom.text()})
+        print(result)
+
 
 
 if __name__ == "__main__":
