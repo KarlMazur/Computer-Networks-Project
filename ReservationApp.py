@@ -61,19 +61,20 @@ class MainWindow(QMainWindow):
         result = firebase.post('/Reservation/', {"reservation":self.reservationEmail.text()+","+self.reservationName.text()+","+self.checkInDateEdit.text()+","+self.checkOutDateEdit.text()+"," +self.adultsInRoom.text()+","+self.childrenInRoom.text()})
         print(result)
         email_send=self.reservationEmail.text()
-        email_user='khaled.ndb2@hotmail.de'
+        email_user='Stanley-lam12@outlook.com'
         msg=MIMEMultipart()
         # me == the sender's email address
         msg['Subject'] = 'Reservation'
         msg['From'] = email_user
-        msg['To'] = 
-        content= "Dear"
+        msg['To'] = email_send
+        content= "Dear...."
         msg.attach(MIMEText(content,'plain'))
         text= msg.as_string()
         server=smtplib.SMTP('smtp.gmail.com',587)
         server.starttls()
-        server.login(email_user,"password")
-        server.sendmail(email_user)
+        server.login(email_user,"A13499220k")
+        server.sendmail(email_user,email_send,text)
+        server.quit()
 
 
 if __name__ == "__main__":
