@@ -3,6 +3,10 @@ from PyQt5 import QtCore, QtWidgets,QtGui
 from PyQt5.QtWidgets import*
 from PyQt5.QtCore import*
 from firebase import firebase
+import smtplib
+from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
+
 
 firebase = firebase.FirebaseApplication('https://reservationapp-2019.firebaseio.com/')
 class MainWindow(QMainWindow):
@@ -56,7 +60,20 @@ class MainWindow(QMainWindow):
 
         result = firebase.post('/Reservation/', {"reservation":self.reservationEmail.text()+","+self.reservationName.text()+","+self.checkInDateEdit.text()+","+self.checkOutDateEdit.text()+"," +self.adultsInRoom.text()+","+self.childrenInRoom.text()})
         print(result)
-
+        email_send=self.reservationEmail.text()
+        email_user='khaled.ndb2@hotmail.de'
+        msg=MIMEMultipart()
+        # me == the sender's email address
+        msg['Subject'] = 'Reservation'
+        msg['From'] = email_user
+        msg['To'] = 
+        content= "Dear"
+        msg.attach(MIMEText(content,'plain'))
+        text= msg.as_string()
+        server=smtplib.SMTP('smtp.gmail.com',587)
+        server.starttls()
+        server.login(email_user,"password")
+        server.sendmail(email_user)
 
 
 if __name__ == "__main__":
