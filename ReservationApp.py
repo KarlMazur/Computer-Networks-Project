@@ -61,8 +61,12 @@ class MainWindow(QMainWindow):
         result = firebase.post('/Reservation/', {"reservation":self.reservationEmail.text()+","+self.reservationName.text()+","+self.checkInDateEdit.text()+","+self.checkOutDateEdit.text()+"," +self.adultsInRoom.text()+","+self.childrenInRoom.text()})
         print(result)
         email_send=self.reservationEmail.text()
-        email_user='Stanley-lam12@outlook.com'
+        email_user='karl19j@gmail.com'
+        server = smtplib.SMTP('smtp.gmail.com', 587)
+        server.ehlo()
         msg=MIMEMultipart()
+        server.starttls()
+        server.login('wecanfixit523@gmail.com','1234567Ma')
         # me == the sender's email address
         msg['Subject'] = 'Reservation'
         msg['From'] = email_user
@@ -70,10 +74,10 @@ class MainWindow(QMainWindow):
         content= "Dear...."
         msg.attach(MIMEText(content,'plain'))
         text= msg.as_string()
-        server=smtplib.SMTP('smtp.gmail.com',587)
-        server.starttls()
-        server.login(email_user,"A13499220k")
-        server.sendmail(email_user,email_send,text)
+
+
+
+        server.sendmail('karl19j@gmail.com',email_send,text)
         server.quit()
 
 
